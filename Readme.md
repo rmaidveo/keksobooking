@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Илона Шишхова](https://up.htmlacademy.ru/javascript/21/user/1550703).
-* Наставник: `Неизвестно`.
+* Наставник: [Андрей Столпнер] (https://htmlacademy.ru/profile/stolpnera).
 
 ---
 
