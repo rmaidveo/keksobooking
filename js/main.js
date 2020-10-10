@@ -116,4 +116,73 @@ function appendPin() {
   mapPins.appendChild(fragment);
 }
 
-appendPin();
+const fieldset = document.querySelectorAll(`fieldset`);
+const mapPinMain = document.querySelector(`.map__pin--main`);
+
+// Неактивное состояние страницы
+function disabledElement(element) {
+  for (let i = 0; i < element.length; i++) {
+    element[i].setAttribute("disabled", "disabled");
+  }
+}
+// Активное состояние страницы
+function abledElement(element) {
+  for (let i = 0; i < element.length; i++) {
+    element[i].removeAttribute("disabled", "disabled");
+  }
+  appendPin();
+
+}
+// Заполнение адреса
+function fillAddress() {
+  let addressX = mapPinMain.style.left;
+  let addressY = mapPinMain.style.top;
+  let addressInput = document.querySelector('#address');
+  let addressTxt = `${parseInt(addressX, 10) + 33}, ${parseInt(addressY, 10) + 33}`;
+  addressInput.value = addressTxt;
+}
+
+fillAddress();
+disabledElement(fieldset);
+
+const pinHandle = document.querySelector('.map__pin--main');
+pinHandle.addEventListener('mousedown', function (evt) {
+  evt.preventDefault();
+  abledElement(fieldset);
+  fillAddress();
+
+
+});
+
+pinHandle.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter') {
+    abledElement(fieldset);
+    fillAddress();
+
+  }
+});
+
+// Валидация гостей и комнат
+const roomCount = document.querySelector('#room_number');
+const guestCount = document.querySelector('#capacity');
+
+function getRoomGuestValidation() {
+  let roomValue = roomCount.value;
+  let guestValue = guestCount.value;
+  if (roomValue === '100' && guestValue !== '0') {
+    guestCount.setCustomValidity('100 комнат доступно только для не гостей');
+  } else if (guestValue === '0' && roomValue !== '100') {
+    guestCount.setCustomValidity('Не гостям доступно только 100 комнат');
+  } else if (guestValue === '0' && roomValue === '100') {
+    guestCount.setCustomValidity('');
+  } else if (roomValue < guestValue) {
+    guestCount.setCustomValidity('Количество гостей превышает количество комнат');
+  } else if (roomValue > guestValue) {
+    guestCount.setCustomValidity('Количество комнат превышает количество гостей');
+  } else {
+    guestCount.setCustomValidity('');
+  }
+}
+
+roomCount.addEventListener('change', getRoomGuestValidation);
+guestCount.addEventListener('change', getRoomGuestValidation);
