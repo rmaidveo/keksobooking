@@ -194,6 +194,5 @@ function renderCard() {
   renderFeauters();
   document.querySelector('.map').insertBefore(popup, mapFiltersContainer);
 }
-
 appendPin();
 renderCard();
