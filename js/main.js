@@ -140,6 +140,7 @@ function writeRoomsGuest() {
   } else {
     guestRooms.textContent = `${ad.offer.rooms} комнаты для ${ad.offer.guests} гостя`;
   }
+  return guestRooms;
 }
 // Отображение фотографии
 function cardsPhotosFill() {
@@ -156,6 +157,7 @@ function cardsPhotosFill() {
       cardPhotos.append(photoElement);
     });
   }
+  return cardPhotos;
 }
 
 // Отображение преимуществ
@@ -170,6 +172,7 @@ function renderFeauters() {
       feature.innerHTML += `<li class="popup__feature popup__feature--${ad.offer.features[i]}"></li>`;
     }
   }
+  return feature;
 }
 
 function splitString(stringToSplit, separator) {
@@ -191,6 +194,5 @@ function renderCard() {
   renderFeauters();
   document.querySelector('.map').insertBefore(popup, mapFiltersContainer);
 }
-
 appendPin();
 renderCard();
