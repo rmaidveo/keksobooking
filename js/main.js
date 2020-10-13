@@ -42,6 +42,8 @@ const PHOTOS = [
 const MAP_RANGE_TOP = 130;
 const MAP_RANGE_BOTTOM = 630;
 const APP_COUNTS = 8;
+const PIN_WIDTH = 50;
+const PIN_HEIGHT = 70;
 const mapPins = document.querySelector('.map__pins');
 const mapWidth = (document.querySelector('.map__overlay').offsetWidth);
 const teplatePin = document.querySelector('#pin').content.querySelector('button');
@@ -99,8 +101,8 @@ function renderPin(pin) {
   let pinImg = pinElement.querySelector('img');
   pinImg.src = pin.author.avatar;
   pinImg.alt = pin.offer.title;
-  pinElement.style.left = `${pin.location.x - pinElement.offsetWidth}px`;
-  pinElement.style.top = `${pin.location.y - pinElement.offsetHeight / 2}px`;
+  pinElement.style.left = `${pin.location.x - PIN_WIDTH / 2}px`;
+  pinElement.style.top = `${pin.location.y - PIN_HEIGHT}px`;
 
   return pinElement;
 }
