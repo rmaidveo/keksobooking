@@ -106,14 +106,6 @@ function renderPin(pin) {
 
   return pinElement;
 }
-const card = document.querySelector('#card').content.querySelector('article');
-const mapFiltersContainer = document.querySelector('.map__filters-container');
-const TYPE_TRANSLATE = {
-  palace: 'Дворец',
-  flat: 'Квартира',
-  house: 'Дом',
-  bungalow: 'Бунгало',
-};
 
 function appendPin() {
   document.querySelector('.map').classList.remove('map--faded');
@@ -124,29 +116,45 @@ function appendPin() {
   mapPins.appendChild(fragment);
 }
 
-let popup = card.cloneNode(true);
-let ad = appartmens[getRandomNumber(1, 8)];
+const card = document.querySelector('#card').content.querySelector('article');
+const mapFiltersContainer = document.querySelector('.map__filters-container');
+const TYPE_TRANSLATE = {
+  palace: 'Дворец',
+  flat: 'Квартира',
+  house: 'Дом',
+  bungalow: 'Бунгало',
+};
+const popup = card.cloneNode(true);
+// Функция делающая массив из строки, удаляя одинаковые значения
+function splitString(stringToSplit, separator) {
+  let arrayOfStrings = stringToSplit.split(separator);
+  return arrayOfStrings.filter(function (item, pos) {
+    return arrayOfStrings.indexOf(item) === pos;
+  });
+}
 // Написание комнат и гостей
-function writeRoomsGuest() {
+function writeRoomsGuest(rooms, guest) {
   const guestRooms = popup.querySelector(`.popup__text--capacity`);
-  if (ad.offer.rooms === '1' && ad.offer.guests === '1') {
-    guestRooms.textContent = `${ad.offer.rooms} комната для ${ad.offer.guests} гостя`;
-  } else if (ad.offer.rooms === '1' && ad.offer.guests > '1') {
-    guestRooms.textContent = `${ad.offer.rooms} комната для ${ad.offer.guests} гостей`;
-  } else if (ad.offer.rooms > '1' && ad.offer.rooms < '5' && ad.offer.guests > '1') {
-    guestRooms.textContent = `${ad.offer.rooms} комнаты для ${ad.offer.guests} гостей`;
-  } else if (ad.offer.rooms >= '5' && ad.offer.guests > '1') {
-    guestRooms.textContent = `${ad.offer.rooms} комнат для ${ad.offer.guests} гостей`;
+  if (rooms === 1 && guest === 1) {
+    guestRooms.textContent = `${rooms} комната для ${guest} гостя`;
+  } else if (rooms === 1 && guest > 1) {
+    guestRooms.textContent = `${rooms} комната для ${guest} гостей`;
+  } else if (rooms > 1 && rooms < 5 && guest > 1) {
+    guestRooms.textContent = `${rooms} комнаты для ${guest} гостей`;
+  } else if (rooms >= 5 && guest > 1) {
+    guestRooms.textContent = `${rooms} комнат для ${guest} гостей`;
+  } else if (rooms >= 5 && guest === 1) {
+    guestRooms.textContent = `${rooms} комнат для ${guest} гостя`;
   } else {
-    guestRooms.textContent = `${ad.offer.rooms} комнаты для ${ad.offer.guests} гостя`;
+    guestRooms.textContent = `${rooms} комнаты для ${guest} гостя`;
   }
   return guestRooms;
 }
 // Отображение фотографии
-function cardsPhotosFill() {
+function cardsPhotosFill(photos) {
   const cardPhotos = popup.querySelector(`.popup__photos`);
   const photoTemplate = cardPhotos.querySelector(`.popup__photo`);
-  const photos = splitString(ad.offer.photos, " , ");
+  photos = splitString(photos, " , ");
   if (photos[0] === '') {
     cardPhotos.innerHTML = '';
   } else {
@@ -159,40 +167,35 @@ function cardsPhotosFill() {
   }
   return cardPhotos;
 }
-
 // Отображение преимуществ
-function renderFeauters() {
+function renderFeauters(features) {
   const feature = popup.querySelector(`.popup__features`);
   feature.innerHTML = "";
-  ad.offer.features = splitString(ad.offer.features, " , ");
-  for (let i = 0; i < ad.offer.features.length; i++) {
-    if (ad.offer.features[0] === '') {
+  features = splitString(features, " , ");
+  for (let i = 0; i < features.length; i++) {
+    if (features[0] === '') {
       feature.innerHTML = "";
     } else {
-      feature.innerHTML += `<li class="popup__feature popup__feature--${ad.offer.features[i]}"></li>`;
+      feature.innerHTML += `<li class="popup__feature popup__feature--${features[i]}"></li>`;
     }
   }
   return feature;
 }
-
-function splitString(stringToSplit, separator) {
-  let arrayOfStrings = stringToSplit.split(separator);
-  return arrayOfStrings;
-}
-
-function renderCard() {
+// Отрисовка карточки обьявления
+function renderCard(ad) {
   popup.querySelector(`.popup__title`).textContent = ad.offer.title;
   popup.querySelector(`.popup__text--address`).textContent = ad.offer.address;
   popup.querySelector(`.popup__text--price`).textContent = `${ad.offer.price} ₽/ночь`;
   popup.querySelector(`.popup__type`).textContent = TYPE_TRANSLATE[ad.offer.type];
-  writeRoomsGuest();
+  writeRoomsGuest(ad.offer.rooms, ad.offer.guests);
   popup.querySelector(`.popup__text--time`).textContent = `Заезд после ${ad.offer.checkin}, выезд\t до ${ad.offer.checkout}`;
   popup.querySelector(`.popup__description `).textContent = ad.offer.description;
   popup.querySelector(`.popup__description `).textContent = ad.offer.description;
   popup.querySelector(`.popup__avatar`).src = ad.author.avatar;
-  cardsPhotosFill();
-  renderFeauters();
+  cardsPhotosFill(ad.offer.photos);
+  renderFeauters(ad.offer.features);
   document.querySelector('.map').insertBefore(popup, mapFiltersContainer);
 }
+
 appendPin();
-renderCard();
+renderCard(appartmens[0]);
