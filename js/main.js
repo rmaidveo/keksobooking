@@ -190,7 +190,6 @@ function renderCard(ad) {
   writeRoomsGuest(ad.offer.rooms, ad.offer.guests);
   popup.querySelector(`.popup__text--time`).textContent = `Заезд после ${ad.offer.checkin}, выезд\t до ${ad.offer.checkout}`;
   popup.querySelector(`.popup__description `).textContent = ad.offer.description;
-  popup.querySelector(`.popup__description `).textContent = ad.offer.description;
   popup.querySelector(`.popup__avatar`).src = ad.author.avatar;
   cardsPhotosFill(ad.offer.photos);
   renderFeauters(ad.offer.features);
