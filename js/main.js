@@ -116,6 +116,7 @@ function appendPin() {
   mapPins.appendChild(fragment);
 }
 
+
 const fieldset = document.querySelectorAll(`fieldset`);
 const mapPinMain = document.querySelector(`.map__pin--main`);
 
