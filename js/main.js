@@ -198,21 +198,21 @@ function appendPin() {
 
 // renderCard(appartmens[0]);
 
+const pinHandle = document.querySelector('.map__pin--main');
 const fieldset = document.querySelectorAll(`fieldset`);
-const mapPinMain = document.querySelector(`.map__pin--main`);
 const form = document.querySelector(`.ad-form`);
 
 // Неактивное состояние страницы
 function disabledElement(element) {
   for (let i = 0; i < element.length; i++) {
-    element[i].setAttribute("disabled", "disabled");
+    element[i].setAttribute("disabled", true);
   }
 
 }
 // Активное состояние страницы
 function abledElement(element) {
   for (let i = 0; i < element.length; i++) {
-    element[i].removeAttribute("disabled", "disabled");
+    element[i].removeAttribute("disabled");
   }
   form.classList.remove('ad-form--disabled');
   appendPin();
@@ -223,18 +223,18 @@ function fillAddress(element) {
   let addressX = element.style.left;
   let addressY = element.style.top;
   let addressInput = document.querySelector('#address');
-  let addressTxt = `${parseInt(addressX, 10) + 33}, ${parseInt(addressY, 10) + 33}`;
+  let addressTxt = `${parseInt(addressX, 10) + PIN_WIDTH}, ${parseInt(addressY, 10) + PIN_HEIGHT}`;
   addressInput.value = addressTxt;
 }
 
-fillAddress(mapPinMain);
+fillAddress(pinHandle);
 disabledElement(fieldset);
 
-const pinHandle = document.querySelector('.map__pin--main');
+
 pinHandle.addEventListener('mousedown', function (evt) {
   evt.preventDefault();
   abledElement(fieldset);
-  fillAddress();
+  fillAddress(pinHandle);
 
 
 });
@@ -242,7 +242,7 @@ pinHandle.addEventListener('mousedown', function (evt) {
 pinHandle.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
     abledElement(fieldset);
-    fillAddress();
+    fillAddress(pinHandle);
 
   }
 });
