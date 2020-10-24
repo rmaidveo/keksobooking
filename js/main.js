@@ -195,7 +195,6 @@ function appendPin() {
 //   renderFeauters(ad.offer.features);
 //   document.querySelector('.map').insertBefore(popup, mapFiltersContainer);
 // }
-
 // renderCard(appartmens[0]);
 
 const pinHandle = document.querySelector('.map__pin--main');
@@ -223,8 +222,11 @@ function fillAddress(element) {
   let addressX = element.style.left;
   let addressY = element.style.top;
   let addressInput = document.querySelector('#address');
-  let addressTxt = `${parseInt(addressX, 10) + PIN_WIDTH}, ${parseInt(addressY, 10) + PIN_HEIGHT}`;
-  addressInput.value = addressTxt;
+  if (form.classList.contains('ad-form--disabled')) {
+    addressInput.value = `${parseInt(addressX, 10) + PIN_WIDTH / 2 } , ${parseInt(addressY, 10) + PIN_HEIGHT / 2}`;
+  } else {
+    addressInput.value = `${parseInt(addressX, 10) + PIN_WIDTH}, ${parseInt(addressY, 10) + PIN_HEIGHT}`;
+  }
 }
 
 fillAddress(pinHandle);
@@ -262,8 +264,6 @@ function getRoomGuestValidation() {
     guestCount.setCustomValidity('');
   } else if (roomValue < guestValue) {
     guestCount.setCustomValidity('Количество гостей превышает количество комнат');
-  } else if (roomValue > guestValue) {
-    guestCount.setCustomValidity('Количество комнат превышает количество гостей');
   } else {
     guestCount.setCustomValidity('');
   }
