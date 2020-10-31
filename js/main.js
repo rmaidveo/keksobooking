@@ -306,16 +306,16 @@ const MIN_PALACE_PRICE = 10000;
 
 typeOption.addEventListener('change', function () {
   if (typeOption.value === 'bungalow') {
-    userPrice.value = MIN_BUNGALO_PRICE;
+    userPrice.placeholder = MIN_BUNGALO_PRICE;
   }
   if (typeOption.value === 'flat') {
-    userPrice.value = MIN_FLAT_PRICE;
+    userPrice.placeholder = MIN_FLAT_PRICE;
   }
   if (typeOption.value === 'house') {
-    userPrice.value = MIN_HOUSE_PRICE;
+    userPrice.placeholder = MIN_HOUSE_PRICE;
   }
   if (typeOption.value === 'palace') {
-    userPrice.value = MIN_PALACE_PRICE;
+    userPrice.placeholder = MIN_PALACE_PRICE;
   }
 });
 
