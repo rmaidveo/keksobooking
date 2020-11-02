@@ -96,6 +96,13 @@ function generateAppartments() {
   return arr;
 }
 
+const onPopupEscPress = function (evt) {
+  if (evt.key === 'Escape') {
+    evt.preventDefault();
+    removeCard();
+  }
+};
+
 function renderPin(pin) {
   let pinElement = teplatePin.cloneNode(true);
   let pinImg = pinElement.querySelector('img');
@@ -107,100 +114,122 @@ function renderPin(pin) {
   return pinElement;
 }
 
-function appendPin() {
-  document.querySelector('.map').classList.remove('map--faded');
+function appendPin(pins) {
+  map.classList.remove('map--faded');
   const fragment = document.createDocumentFragment();
-  for (let i = 0; i < appartmens.length; i++) {
-    fragment.appendChild(renderPin(appartmens[i]));
+  for (let pin of pins) {
+    const renderPins = renderPin(pin);
+    fragment.appendChild(renderPins);
+    renderPins.addEventListener(`click`, function () {
+      renderCard(pin);
+      document.addEventListener('keydown', onPopupEscPress);
+    });
   }
   mapPins.appendChild(fragment);
 }
-// Времено закоментировала эту часть кода, тк в это задании не нужна отровка карточки обьявления
-// const card = document.querySelector('#card').content.querySelector('article');
-// const mapFiltersContainer = document.querySelector('.map__filters-container');
-// const TYPE_TRANSLATE = {
-//   palace: 'Дворец',
-//   flat: 'Квартира',
-//   house: 'Дом',
-//   bungalow: 'Бунгало',
-// };
-// const popup = card.cloneNode(true);
-// // Функция делающая массив из строки, удаляя одинаковые значения
-// function splitString(stringToSplit, separator) {
-//   let arrayOfStrings = stringToSplit.split(separator);
-//   return arrayOfStrings.filter(function (item, pos) {
-//     return arrayOfStrings.indexOf(item) === pos;
-//   });
-// }
-// // Написание комнат и гостей
-// function writeRoomsGuest(rooms, guest) {
-//   const guestRooms = popup.querySelector(`.popup__text--capacity`);
-//   if (rooms === 1 && guest === 1) {
-//     guestRooms.textContent = `${rooms} комната для ${guest} гостя`;
-//   } else if (rooms === 1 && guest > 1) {
-//     guestRooms.textContent = `${rooms} комната для ${guest} гостей`;
-//   } else if (rooms > 1 && rooms < 5 && guest > 1) {
-//     guestRooms.textContent = `${rooms} комнаты для ${guest} гостей`;
-//   } else if (rooms >= 5 && guest > 1) {
-//     guestRooms.textContent = `${rooms} комнат для ${guest} гостей`;
-//   } else if (rooms >= 5 && guest === 1) {
-//     guestRooms.textContent = `${rooms} комнат для ${guest} гостя`;
-//   } else {
-//     guestRooms.textContent = `${rooms} комнаты для ${guest} гостя`;
-//   }
-//   return guestRooms;
-// }
-// // Отображение фотографии
-// function cardsPhotosFill(photos) {
-//   const cardPhotos = popup.querySelector(`.popup__photos`);
-//   const photoTemplate = cardPhotos.querySelector(`.popup__photo`);
-//   photos = splitString(photos, " , ");
-//   if (photos[0] === '') {
-//     cardPhotos.innerHTML = '';
-//   } else {
-//     cardPhotos.innerHTML = ``;
-//     photos.forEach((photo) => {
-//       const photoElement = photoTemplate.cloneNode(true);
-//       photoElement.src = photo;
-//       cardPhotos.append(photoElement);
-//     });
-//   }
-//   return cardPhotos;
-// }
-// // Отображение преимуществ
-// function renderFeauters(features) {
-//   const feature = popup.querySelector(`.popup__features`);
-//   feature.innerHTML = "";
-//   features = splitString(features, " , ");
-//   for (let i = 0; i < features.length; i++) {
-//     if (features[0] === '') {
-//       feature.innerHTML = "";
-//     } else {
-//       feature.innerHTML += `<li class="popup__feature popup__feature--${features[i]}"></li>`;
-//     }
-//   }
-//   return feature;
-// }
-// // Отрисовка карточки обьявления
-// function renderCard(ad) {
-//   popup.querySelector(`.popup__title`).textContent = ad.offer.title;
-//   popup.querySelector(`.popup__text--address`).textContent = ad.offer.address;
-//   popup.querySelector(`.popup__text--price`).textContent = `${ad.offer.price} ₽/ночь`;
-//   popup.querySelector(`.popup__type`).textContent = TYPE_TRANSLATE[ad.offer.type];
-//   writeRoomsGuest(ad.offer.rooms, ad.offer.guests);
-//   popup.querySelector(`.popup__text--time`).textContent = `Заезд после ${ad.offer.checkin}, выезд\t до ${ad.offer.checkout}`;
-//   popup.querySelector(`.popup__description `).textContent = ad.offer.description;
-//   popup.querySelector(`.popup__avatar`).src = ad.author.avatar;
-//   cardsPhotosFill(ad.offer.photos);
-//   renderFeauters(ad.offer.features);
-//   document.querySelector('.map').insertBefore(popup, mapFiltersContainer);
-// }
-// renderCard(appartmens[0]);
+
+const card = document.querySelector('#card').content.querySelector('article');
+const mapFiltersContainer = document.querySelector('.map__filters-container');
+const TYPE_TRANSLATE = {
+  palace: 'Дворец',
+  flat: 'Квартира',
+  house: 'Дом',
+  bungalow: 'Бунгало',
+};
+const popup = card.cloneNode(true);
+const map = document.querySelector(`.map`);
+const closeCard = popup.querySelector('.popup__close');
+
+// Функция делающая массив из строки, удаляя одинаковые значения
+function splitString(stringToSplit, separator) {
+  let arrayOfStrings = stringToSplit.split(separator);
+  return arrayOfStrings.filter(function (item, pos) {
+    return arrayOfStrings.indexOf(item) === pos;
+  });
+}
+// Написание комнат и гостей
+function writeRoomsGuest(rooms, guest) {
+  const guestRooms = popup.querySelector(`.popup__text--capacity`);
+  if (rooms === 1 && guest === 1) {
+    guestRooms.textContent = `${rooms} комната для ${guest} гостя`;
+  } else if (rooms === 1 && guest > 1) {
+    guestRooms.textContent = `${rooms} комната для ${guest} гостей`;
+  } else if (rooms > 1 && rooms < 5 && guest > 1) {
+    guestRooms.textContent = `${rooms} комнаты для ${guest} гостей`;
+  } else if (rooms >= 5 && guest > 1) {
+    guestRooms.textContent = `${rooms} комнат для ${guest} гостей`;
+  } else if (rooms >= 5 && guest === 1) {
+    guestRooms.textContent = `${rooms} комнат для ${guest} гостя`;
+  } else {
+    guestRooms.textContent = `${rooms} комнаты для ${guest} гостя`;
+  }
+  return guestRooms;
+}
+
+const cardPhotos = popup.querySelector(`.popup__photos`);
+const photoTemplate = cardPhotos.querySelector(`.popup__photo`);
+const photoElement = photoTemplate.cloneNode(true);
+// Отображение фотографии
+function cardsPhotosFill(photos) {
+  photos = splitString(photos, " , ");
+  if (photos[0] === '') {
+    cardPhotos.innerHTML = '';
+  } else {
+    cardPhotos.innerHTML = '';
+    photos.forEach((photo) => {
+      photoElement.src = photo;
+      cardPhotos.append(photoElement);
+    });
+  }
+  return cardPhotos;
+}
+// Отображение преимуществ
+function renderFeauters(features) {
+  const feature = popup.querySelector(`.popup__features`);
+  feature.innerHTML = "";
+  features = splitString(features, " , ");
+  for (let i = 0; i < features.length; i++) {
+    if (features[0] === '') {
+      feature.innerHTML = "";
+    } else {
+      feature.innerHTML += `<li class="popup__feature popup__feature--${features[i]}"></li>`;
+    }
+  }
+  return feature;
+}
+
+// Отрисовка карточки обьявления
+function renderCard(ad) {
+  popup.querySelector(`.popup__title`).textContent = ad.offer.title;
+  popup.querySelector(`.popup__text--address`).textContent = ad.offer.address;
+  popup.querySelector(`.popup__text--price`).textContent = `${ad.offer.price} ₽/ночь`;
+  popup.querySelector(`.popup__type`).textContent = TYPE_TRANSLATE[ad.offer.type];
+  writeRoomsGuest(ad.offer.rooms, ad.offer.guests);
+  popup.querySelector(`.popup__text--time`).textContent = `Заезд после ${ad.offer.checkin}, выезд\t до ${ad.offer.checkout}`;
+  popup.querySelector(`.popup__description `).textContent = ad.offer.description;
+  popup.querySelector(`.popup__avatar`).src = ad.author.avatar;
+  renderFeauters(ad.offer.features);
+  cardsPhotosFill(ad.offer.photos);
+  map.insertBefore(popup, mapFiltersContainer);
+}
+const removeCard = () => {
+  if (map.contains(popup)) {
+    popup.remove();
+  }
+};
+
+const closeCards = function () {
+  removeCard();
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+closeCard.addEventListener('click', function () {
+  closeCards();
+});
 
 const pinHandle = document.querySelector('.map__pin--main');
 const fieldset = document.querySelectorAll(`fieldset`);
 const form = document.querySelector(`.ad-form`);
-
 // Неактивное состояние страницы
 function disabledElement(element) {
   for (let i = 0; i < element.length; i++) {
@@ -214,7 +243,7 @@ function abledElement(element) {
     element[i].removeAttribute("disabled");
   }
   form.classList.remove('ad-form--disabled');
-  appendPin();
+  appendPin(appartmens);
 
 }
 // Заполнение адреса
@@ -231,7 +260,6 @@ function fillAddress(element) {
 
 fillAddress(pinHandle);
 disabledElement(fieldset);
-
 
 pinHandle.addEventListener('mousedown', function (evt) {
   evt.preventDefault();
@@ -268,6 +296,68 @@ function getRoomGuestValidation() {
     guestCount.setCustomValidity('');
   }
 }
+// Валидация стоимости и типа жилья
+const typeOption = document.querySelector('#type');
+const userPrice = document.querySelector('#price');
+const MIN_BUNGALO_PRICE = 0;
+const MIN_FLAT_PRICE = 1000;
+const MIN_HOUSE_PRICE = 5000;
+const MIN_PALACE_PRICE = 10000;
 
+typeOption.addEventListener('change', function () {
+  if (typeOption.value === 'bungalow') {
+    userPrice.placeholder = MIN_BUNGALO_PRICE;
+  }
+  if (typeOption.value === 'flat') {
+    userPrice.placeholder = MIN_FLAT_PRICE;
+  }
+  if (typeOption.value === 'house') {
+    userPrice.placeholder = MIN_HOUSE_PRICE;
+  }
+  if (typeOption.value === 'palace') {
+    userPrice.placeholder = MIN_PALACE_PRICE;
+  }
+});
+
+userPrice.addEventListener('change', function () {
+  const value = userPrice.value;
+
+  if (typeOption.value === 'bungalow' && value < MIN_BUNGALO_PRICE) {
+    userPrice.setCustomValidity('Минимальная сумма: ' + MIN_BUNGALO_PRICE);
+  } else if (typeOption.value === 'flat' && value < MIN_FLAT_PRICE) {
+    userPrice.setCustomValidity('Минимальная сумма: ' + MIN_FLAT_PRICE);
+  } else if (typeOption.value === 'house' && value < MIN_HOUSE_PRICE) {
+    userPrice.setCustomValidity('Минимальная сумма: ' + MIN_HOUSE_PRICE);
+  } else if (typeOption.value === 'palace' && value < MIN_PALACE_PRICE) {
+    userPrice.setCustomValidity('Минимальная сумма: ' + MIN_PALACE_PRICE);
+  } else {
+    userPrice.setCustomValidity('');
+  }
+
+  userPrice.reportValidity();
+});
+
+// Валидация времени заезда и выезда
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
+const validTime = function (firstEl, secondEl) {
+  if (firstEl.value === "12:00") {
+    secondEl.value = "12:00";
+  }
+  if (firstEl.value === "13:00") {
+    secondEl.value = "13:00";
+  }
+  if (firstEl.value === "14:00") {
+    secondEl.value = "14:00";
+  }
+};
+
+timeIn.addEventListener('change', function () {
+  validTime(timeIn, timeOut);
+});
+
+timeOut.addEventListener('change', function () {
+  validTime(timeOut, timeIn);
+});
 roomCount.addEventListener('change', getRoomGuestValidation);
 guestCount.addEventListener('change', getRoomGuestValidation);
