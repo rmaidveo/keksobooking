@@ -11,7 +11,7 @@
   function generateArray(array) {
     let arr = [];
     for (let i = 0; i < getRandomNumber(0, array.length); i++) {
-      arr[i] = randomElementArray(array);
+      arr.push(randomElementArray(array));
     }
     return arr.join(' , ');
   }
