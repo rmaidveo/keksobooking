@@ -37,9 +37,7 @@
     let addressY = element.style.top;
     let addressInput = document.querySelector('#address');
     if (window.constants.form.classList.contains('ad-form--disabled')) {
-      addressInput.value = `${Math.floor(parseInt(addressX, 10) + window.constants.PIN_WIDTH_MAIN / 2)}, ${Math.floor(parseInt(addressY, 10) + (window.constants.PIN_HEIGHT_MAIN + window.constants.PIN_HEIGHT_NEEDLE) / 2)}`;
-    } else if (element === window.constants.PIN_HANDLE) {
-      addressInput.value = `${Math.floor(parseInt(addressX, 10) + window.constants.PIN_WIDTH_MAIN / 2)}, ${Math.floor(parseInt(addressY, 10) + window.constants.PIN_HEIGHT_MAIN + window.constants.PIN_HEIGHT_NEEDLE)}`;
+      addressInput.value = `${parseInt(addressX, 10) + window.constants.PIN_WIDTH / 2 } , ${parseInt(addressY, 10) +  window.constants.PIN_HEIGHT / 2}`;
     } else {
       addressInput.value = `${parseInt(addressX, 10) + window.constants.PIN_WIDTH / 2}, ${parseInt(addressY, 10) + window.constants.PIN_HEIGH }`;
     }

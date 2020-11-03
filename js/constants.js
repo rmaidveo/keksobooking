@@ -90,8 +90,7 @@
     MIN_FLAT_PRICE,
     MIN_HOUSE_PRICE,
     MIN_PALACE_PRICE,
-    PIN_HANDLE,
-
+    PIN_HANDLE
 
   };
 
