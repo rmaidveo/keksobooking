@@ -60,6 +60,7 @@
   const MIN_FLAT_PRICE = 1000;
   const MIN_HOUSE_PRICE = 5000;
   const MIN_PALACE_PRICE = 10000;
+  const pinHandle = document.querySelector('.map__pin--main');
 
   window.constants = {
     PIN_WIDTH,
@@ -83,6 +84,7 @@
     MIN_FLAT_PRICE,
     MIN_HOUSE_PRICE,
     MIN_PALACE_PRICE,
+    pinHandle
 
   };
 
