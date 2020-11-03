@@ -4,7 +4,6 @@
   const popup = card.cloneNode(true);
   const cardPhotos = popup.querySelector(`.popup__photos`);
   const photoTemplate = cardPhotos.querySelector(`.popup__photo`);
-  const photoElement = photoTemplate.cloneNode(true);
 
   function removeCard() {
     if (window.constants.MAP.contains(popup)) {
@@ -31,12 +30,14 @@
   }
   // Отображение фотографии
   function cardsPhotosFill(photos) {
+
     photos = window.util.splitString(photos, " , ");
     if (photos[0] === '') {
       cardPhotos.innerHTML = '';
     } else {
       cardPhotos.innerHTML = '';
       photos.forEach((photo) => {
+        const photoElement = photoTemplate.cloneNode(true);
         photoElement.src = photo;
         cardPhotos.append(photoElement);
       });

@@ -14,19 +14,19 @@
     closeCards();
   });
 
-  window.map.fillAddress(window.constants.pinHandle);
+  window.map.fillAddress(window.constants.PIN_HANDLE);
   window.map.disabledElement(fieldset);
 
-  window.constants.pinHandle.addEventListener('mousedown', function (evt) {
+  window.constants.PIN_HANDLE.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
     window.map.abledElement(fieldset);
-    window.map.fillAddress(window.constants.pinHandle);
+    window.map.fillAddress(window.constants.PIN_HANDLE);
   });
 
-  window.constants.pinHandle.addEventListener('keydown', function (evt) {
+  window.constants.PIN_HANDLE.addEventListener('keydown', function (evt) {
     if (evt.key === 'Enter') {
       window.map.abledElement(fieldset);
-      window.map.fillAddress(window.constants.pinHandle);
+      window.map.fillAddress(window.constants.PIN_HANDLE);
     }
   });
 
