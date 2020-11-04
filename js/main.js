@@ -1,7 +1,6 @@
 'use strict';
 (function () {
   const closeCard = window.card.popup.querySelector('.popup__close');
-  const pinHandle = document.querySelector('.map__pin--main');
   const fieldset = document.querySelectorAll(`fieldset`);
   const timeIn = document.querySelector('#timein');
   const timeOut = document.querySelector('#timeout');
@@ -15,19 +14,19 @@
     closeCards();
   });
 
-  window.map.fillAddress(pinHandle);
+  window.map.fillAddress(window.constants.PIN_HANDLE);
   window.map.disabledElement(fieldset);
 
-  pinHandle.addEventListener('mousedown', function (evt) {
+  window.constants.PIN_HANDLE.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
     window.map.abledElement(fieldset);
-    window.map.fillAddress(pinHandle);
+    window.map.fillAddress(window.constants.PIN_HANDLE);
   });
 
-  pinHandle.addEventListener('keydown', function (evt) {
+  window.constants.PIN_HANDLE.addEventListener('keydown', function (evt) {
     if (evt.key === 'Enter') {
       window.map.abledElement(fieldset);
-      window.map.fillAddress(pinHandle);
+      window.map.fillAddress(window.constants.PIN_HANDLE);
     }
   });
 
