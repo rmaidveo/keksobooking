@@ -91,7 +91,6 @@
     MIN_HOUSE_PRICE,
     MIN_PALACE_PRICE,
     PIN_HANDLE
-
   };
 
 })();

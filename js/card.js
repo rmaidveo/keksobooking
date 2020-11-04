@@ -30,8 +30,6 @@
   }
   // Отображение фотографии
   function cardsPhotosFill(photos) {
-
-    photos = window.util.splitString(photos, " , ");
     if (photos[0] === '') {
       cardPhotos.innerHTML = '';
     } else {
@@ -48,7 +46,6 @@
   function renderFeauters(features) {
     const feature = popup.querySelector(`.popup__features`);
     feature.innerHTML = "";
-    features = window.util.splitString(features, " , ");
     for (let i = 0; i < features.length; i++) {
       if (features[0] === '') {
         feature.innerHTML = "";
