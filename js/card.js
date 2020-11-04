@@ -19,7 +19,7 @@
       guestRooms.textContent = `${rooms} комната для ${guest} гостей`;
     } else if (rooms > 1 && rooms < 5 && guest > 1) {
       guestRooms.textContent = `${rooms} комнаты для ${guest} гостей`;
-    } else if (rooms >= 5 && guest > 1) {
+    } else if (rooms >= 5 && guest > 1 || rooms < 1 && guest < 1) {
       guestRooms.textContent = `${rooms} комнат для ${guest} гостей`;
     } else if (rooms >= 5 && guest === 1) {
       guestRooms.textContent = `${rooms} комнат для ${guest} гостя`;

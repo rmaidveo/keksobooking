@@ -20,21 +20,31 @@
     }
 
   }
+  const onError = function (errorMessage) {
+    const node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: #ff5635; color: white; border-bottom: 2px solid #353535;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '28px';
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
   // Активное состояние страницы
   function abledElement(element) {
     for (let i = 0; i < element.length; i++) {
       element[i].removeAttribute("disabled");
     }
     window.constants.form.classList.remove('ad-form--disabled');
-    window.server.load(function (pins) {
-      appendPin(pins);
-    });
+    window.server.load(appendPin, onError);
   }
   // Заполнение адреса
   function fillAddress(element) {
     let addressX = element.style.left;
     let addressY = element.style.top;
     let addressInput = document.querySelector('#address');
+
     if (window.constants.form.classList.contains('ad-form--disabled')) {
       addressInput.value = `${Math.floor(parseInt(addressX, 10) + window.constants.PIN_WIDTH_MAIN / 2)}, ${Math.floor(parseInt(addressY, 10) + (window.constants.PIN_HEIGHT_MAIN + window.constants.PIN_HEIGHT_NEEDLE) / 2)}`;
     } else if (element === window.constants.PIN_HANDLE) {

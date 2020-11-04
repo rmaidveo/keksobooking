@@ -5,46 +5,6 @@
   const PIN_WIDTH_MAIN = 65;
   const PIN_HEIGHT_MAIN = 65;
   const PIN_HEIGHT_NEEDLE = 22;
-  const TITLE = [
-    'Уютное жилье',
-    'Место, которое вы давно искали',
-    'Жилье с потрясающим видом из окна',
-    'Вы обязательно к нам вернетесь!',
-    'Уютное жилье',
-    'Место, которое вы давно искали',
-    'Жилье с потрясающим видом из окна',
-    'Вы обязательно к нам вернетесь!',
-  ];
-
-  const TYPE_APARTMENT = [
-    'palace',
-    'flat',
-    'house',
-    'bungalow',
-  ];
-  const CHECHKIN = [
-    '12:00',
-    '13:00',
-    '14:00',
-  ];
-  const CHECHKOUT = [
-    '12:00',
-    '13:00',
-    '14:00',
-  ];
-  const FEATURES = [
-    'wifi',
-    'dishwasher',
-    'parking',
-    'washer',
-    'elevator',
-    'conditioner',
-  ];
-  const PHOTOS = [
-    'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
-    'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
-    'http://o0.github.io/assets/images/tokyo/hotel3.jpg',
-  ];
   const TYPE_TRANSLATE = {
     palace: 'Дворец',
     flat: 'Квартира',
@@ -71,12 +31,6 @@
     PIN_WIDTH_MAIN,
     PIN_HEIGHT_MAIN,
     PIN_HEIGHT_NEEDLE,
-    TITLE,
-    TYPE_APARTMENT,
-    CHECHKIN,
-    CHECHKOUT,
-    FEATURES,
-    PHOTOS,
     MAP_RANGE_TOP,
     MAP_RANGE_BOTTOM,
     APP_COUNTS,
