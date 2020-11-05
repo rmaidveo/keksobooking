@@ -19,7 +19,7 @@
       guestRooms.textContent = `${rooms} комната для ${guest} гостей`;
     } else if (rooms > 1 && rooms < 5 && guest > 1) {
       guestRooms.textContent = `${rooms} комнаты для ${guest} гостей`;
-    } else if (rooms >= 5 && guest > 1) {
+    } else if (rooms >= 5 && guest > 1 || rooms < 1 && guest < 1) {
       guestRooms.textContent = `${rooms} комнат для ${guest} гостей`;
     } else if (rooms >= 5 && guest === 1) {
       guestRooms.textContent = `${rooms} комнат для ${guest} гостя`;
@@ -30,8 +30,6 @@
   }
   // Отображение фотографии
   function cardsPhotosFill(photos) {
-
-    photos = window.util.splitString(photos, " , ");
     if (photos[0] === '') {
       cardPhotos.innerHTML = '';
     } else {
@@ -48,7 +46,6 @@
   function renderFeauters(features) {
     const feature = popup.querySelector(`.popup__features`);
     feature.innerHTML = "";
-    features = window.util.splitString(features, " , ");
     for (let i = 0; i < features.length; i++) {
       if (features[0] === '') {
         feature.innerHTML = "";

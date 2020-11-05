@@ -4,7 +4,6 @@
   const guestCount = document.querySelector('#capacity');
   const typeOption = document.querySelector('#type');
   const userPrice = document.querySelector('#price');
-
   // Валидация гостей и комнат
   function getRoomGuestValidation() {
     let roomValue = roomCount.value;
