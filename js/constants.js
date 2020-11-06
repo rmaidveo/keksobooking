@@ -5,6 +5,10 @@
   const PIN_WIDTH_MAIN = 65;
   const PIN_HEIGHT_MAIN = 65;
   const PIN_HEIGHT_NEEDLE = 22;
+  const PIN_MAIN_START = {
+    top: 375,
+    left: 570,
+  };
   const TYPE_TRANSLATE = {
     palace: 'Дворец',
     flat: 'Квартира',
@@ -31,6 +35,7 @@
     PIN_WIDTH_MAIN,
     PIN_HEIGHT_MAIN,
     PIN_HEIGHT_NEEDLE,
+    PIN_MAIN_START,
     MAP_RANGE_TOP,
     MAP_RANGE_BOTTOM,
     APP_COUNTS,
