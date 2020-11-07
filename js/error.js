@@ -34,15 +34,17 @@
     document.addEventListener('keydown', onErrorEscPress);
   };
 
-  function onErrorEscPress(evt) {
+  function resetAdress() {
     window.map.fillAddress(window.constants.PIN_HANDLE);
-    window.util.onEscPress(evt, nodeError);
   }
 
   function closeError() {
-    window.util.removeElinForm(nodeError);
-    window.map.fillAddress(window.constants.PIN_HANDLE);
+    window.util.removeElinForm(nodeError, resetAdress);
     document.removeEventListener('keydown', onErrorEscPress);
+  }
+
+  function onErrorEscPress(evt) {
+    window.util.onEscPress(evt, closeError);
   }
 
   window.error = {

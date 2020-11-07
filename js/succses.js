@@ -26,7 +26,7 @@
   }
 
   function onSuccsesEscPress(evt) {
-    window.util.onEscPress(evt, nodeSuccses);
+    window.util.onEscPress(evt, closeSucsses);
   }
 
   function closeSucsses() {
