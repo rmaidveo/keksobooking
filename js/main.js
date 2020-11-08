@@ -20,6 +20,7 @@
   window.constants.PIN_HANDLE.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
     window.map.abledElement(fieldset);
+    window.form.getRoomGuestValidation();
     window.map.fillAddress(window.constants.PIN_HANDLE);
   });
 
@@ -45,13 +46,7 @@
   timeOut.addEventListener('change', function () {
     window.form.validTime(timeOut, timeIn);
   });
-
-  window.form.roomCount.addEventListener('change', function () {
-    window.form.getRoomGuestValidation();
-  });
-
-  window.form.guestCount.addEventListener('change', function () {
-    window.form.getRoomGuestValidation();
-  });
+  window.form.roomCount.addEventListener('change', window.form.getRoomGuestValidation);
+  window.form.guestCount.addEventListener('change', window.form.getRoomGuestValidation);
 
 })();

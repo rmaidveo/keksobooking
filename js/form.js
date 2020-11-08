@@ -4,6 +4,8 @@
   const guestCount = document.querySelector('#capacity');
   const typeOption = document.querySelector('#type');
   const userPrice = document.querySelector('#price');
+  const buttonReset = document.querySelector('.ad-form__reset');
+
   // Валидация гостей и комнат
   function getRoomGuestValidation() {
     let roomValue = roomCount.value;
@@ -65,6 +67,20 @@
     }
   }
 
+  const onSubmitSend = function (evt) {
+    evt.preventDefault();
+    window.card.removeCard();
+    window.server.upload(new FormData(window.constants.form), window.succses.onSuccses, window.error.onError);
+
+  };
+
+  window.constants.form.addEventListener('submit', onSubmitSend);
+
+  buttonReset.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    window.util.resetForm();
+  });
+
   window.form = {
     userPrice,
     typeOption,
@@ -75,4 +91,5 @@
     priceValidation,
     validTime,
   };
+
 })();
