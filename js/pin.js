@@ -12,7 +12,23 @@
 
     return pinElement;
   }
+
+  function resetMainPin() {
+    window.constants.PIN_HANDLE.style.left = `${window.constants.PIN_MAIN_START.left}px`;
+    window.constants.PIN_HANDLE.style.top = `${window.constants.PIN_MAIN_START.top}px`;
+  }
+
+  function deletePins() {
+    const pins = document.querySelectorAll('.map__pin');
+    pins.forEach((pin) => {
+      if (!pin.contains(window.constants.PIN_HANDLE)) {
+        pin.remove();
+      }
+    });
+  }
   window.pin = {
     renderPin,
+    deletePins,
+    resetMainPin,
   };
 })();

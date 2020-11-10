@@ -5,12 +5,6 @@
   const cardPhotos = popup.querySelector(`.popup__photos`);
   const photoTemplate = cardPhotos.querySelector(`.popup__photo`);
 
-  function removeCard() {
-    if (window.constants.MAP.contains(popup)) {
-      popup.remove();
-    }
-  }
-
   function writeRoomsGuest(rooms, guest) {
     const guestRooms = popup.querySelector(`.popup__text--capacity`);
     if (rooms === 1 && guest === 1) {
@@ -28,7 +22,7 @@
     }
     return guestRooms;
   }
-  // Отображение фотографии
+
   function cardsPhotosFill(photos) {
     if (photos[0] === '') {
       cardPhotos.innerHTML = '';
@@ -42,7 +36,7 @@
     }
     return cardPhotos;
   }
-  // Отображение преимуществ
+
   function renderFeauters(features) {
     const feature = popup.querySelector(`.popup__features`);
     feature.innerHTML = "";
@@ -55,7 +49,7 @@
     }
     return feature;
   }
-  // Отрисовка карточки обьявления
+
   function renderCard(ad) {
     popup.querySelector(`.popup__title`).textContent = ad.offer.title;
     popup.querySelector(`.popup__text--address`).textContent = ad.offer.address;
@@ -73,6 +67,5 @@
   window.card = {
     popup,
     renderCard,
-    removeCard
   };
 })();

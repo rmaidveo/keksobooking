@@ -6,7 +6,6 @@
   const userPrice = document.querySelector('#price');
   const buttonReset = document.querySelector('.ad-form__reset');
 
-  // Валидация гостей и комнат
   function getRoomGuestValidation() {
     let roomValue = roomCount.value;
     let guestValue = guestCount.value;
@@ -22,7 +21,7 @@
       guestCount.setCustomValidity('');
     }
   }
-  // Валидация стоимости и типа жилья
+
   function minPriceValidation() {
     if (typeOption.value === 'bungalow') {
       userPrice.placeholder = window.constants.MIN_BUNGALO_PRICE;
@@ -54,7 +53,7 @@
 
     userPrice.reportValidity();
   }
-  // Валидация времени заезда и выезда
+
   function validTime(firstEl, secondEl) {
     if (firstEl.value === "12:00") {
       secondEl.value = "12:00";
@@ -69,7 +68,7 @@
 
   const onSubmitSend = function (evt) {
     evt.preventDefault();
-    window.card.removeCard();
+    window.util.removeCard();
     window.server.upload(new FormData(window.constants.form), window.succses.onSuccses, window.error.onError);
 
   };
