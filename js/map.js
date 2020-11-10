@@ -16,7 +16,7 @@
 
   function succsesLoad(data) {
     window.dataWithId = window.util.addIdToData(data);
-    appendPin(window.dataWithId.slice(0, 5));
+    appendPin(window.dataWithId.slice(0, window.constants.MAX_PIN_ON_MAP));
 
   }
 
