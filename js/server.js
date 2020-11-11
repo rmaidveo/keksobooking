@@ -9,11 +9,11 @@
   };
   const TIMEOUT_IN_MS = 10000;
 
-  function xhrRequest(method, onSuccses, onError, data = null) {
+  const xhrRequest = (method, onSuccses, onError, data = null) => {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
-    xhr.addEventListener('load', function () {
+    xhr.addEventListener('load', () => {
       if (xhr.status === StatusCode.OK) {
         if (method === 'GET') {
           onSuccses(xhr.response);
@@ -25,11 +25,11 @@
       }
     });
 
-    xhr.addEventListener('error', function () {
+    xhr.addEventListener('error', () => {
       onError('Произошла ошибка соединения');
     });
 
-    xhr.addEventListener('timeout', function () {
+    xhr.addEventListener('timeout', () => {
       onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
 
@@ -42,15 +42,15 @@
     }
 
     xhr.send(data);
-  }
+  };
 
-  function load(onSuccses, onError) {
+  const load = (onSuccses, onError) => {
     xhrRequest('GET', onSuccses, onError);
-  }
+  };
 
-  function upload(data, onSuccses, onError) {
+  const upload = (data, onSuccses, onError) => {
     xhrRequest('POST', onSuccses, onError, data);
-  }
+  };
 
   window.server = {
     load,

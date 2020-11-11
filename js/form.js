@@ -6,7 +6,7 @@
   const userPrice = document.querySelector('#price');
   const buttonReset = document.querySelector('.ad-form__reset');
 
-  function getRoomGuestValidation() {
+  const getRoomGuestValidation = () => {
     let roomValue = roomCount.value;
     let guestValue = guestCount.value;
     if (roomValue === '100' && guestValue !== '0') {
@@ -20,9 +20,9 @@
     } else {
       guestCount.setCustomValidity('');
     }
-  }
+  };
 
-  function minPriceValidation() {
+  const minPriceValidation = () => {
     if (typeOption.value === 'bungalow') {
       userPrice.placeholder = window.constants.MIN_BUNGALO_PRICE;
     }
@@ -35,9 +35,9 @@
     if (typeOption.value === 'palace') {
       userPrice.placeholder = window.constants.MIN_PALACE_PRICE;
     }
-  }
+  };
 
-  function priceValidation() {
+  const priceValidation = () => {
     const value = userPrice.value;
     if (typeOption.value === 'bungalow' && value < window.constants.MIN_BUNGALO_PRICE) {
       userPrice.setCustomValidity('Минимальная сумма: ' + window.constants.MIN_BUNGALO_PRICE);
@@ -50,11 +50,10 @@
     } else {
       userPrice.setCustomValidity('');
     }
-
     userPrice.reportValidity();
-  }
+  };
 
-  function validTime(firstEl, secondEl) {
+  const validTime = (firstEl, secondEl) => {
     if (firstEl.value === "12:00") {
       secondEl.value = "12:00";
     }
@@ -64,9 +63,9 @@
     if (firstEl.value === "14:00") {
       secondEl.value = "14:00";
     }
-  }
+  };
 
-  const onSubmitSend = function (evt) {
+  const onSubmitSend = (evt) => {
     evt.preventDefault();
     window.util.removeCard();
     window.server.upload(new FormData(window.constants.form), window.succses.onSuccses, window.error.onError);
@@ -75,7 +74,7 @@
 
   window.constants.form.addEventListener('submit', onSubmitSend);
 
-  buttonReset.addEventListener('click', function (evt) {
+  buttonReset.addEventListener('click', (evt) => {
     evt.preventDefault();
     window.util.resetForm();
   });

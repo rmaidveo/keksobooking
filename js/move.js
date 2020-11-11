@@ -5,14 +5,14 @@
   const MIN_X = 0 - window.constants.PIN_WIDTH_MAIN / 2;
   const MAX_X = Math.ceil(window.constants.mapWidth - window.constants.PIN_WIDTH_MAIN / 2);
 
-  window.constants.PIN_HANDLE.addEventListener('mousedown', function (evt) {
+  window.constants.PIN_HANDLE.addEventListener('mousedown', (evt) => {
     evt.preventDefault();
 
     let startCoords = {
       x: evt.clientX,
       y: evt.clientY
     };
-    const onMouseMove = function (moveEvt) {
+    const onMouseMove = (moveEvt) => {
       moveEvt.preventDefault();
 
       let shift = {
@@ -35,7 +35,7 @@
       window.map.fillAddress(window.constants.PIN_HANDLE);
     };
 
-    const onMouseUp = function (upEvt) {
+    const onMouseUp = (upEvt) => {
       upEvt.preventDefault();
       window.map.fillAddress(window.constants.PIN_HANDLE);
       document.removeEventListener('mousemove', onMouseMove);

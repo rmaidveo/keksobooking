@@ -1,33 +1,33 @@
 'use strict';
 (function () {
-  function appendPin(pins) {
+  const appendPin = (pins) => {
     window.constants.MAP.classList.remove('map--faded');
     const fragment = document.createDocumentFragment();
     for (let pin of pins) {
       const renderPins = window.pin.renderPin(pin);
       fragment.appendChild(renderPins);
-      renderPins.addEventListener(`click`, function () {
+      renderPins.addEventListener(`click`, () => {
         window.card.renderCard(pin);
         document.addEventListener('keydown', onPopupEscPress);
       });
     }
     window.constants.mapPins.appendChild(fragment);
-  }
+  };
 
-  function succsesLoad(data) {
+  const succsesLoad = (data) => {
     window.dataWithId = window.util.addIdToData(data);
     appendPin(window.dataWithId.slice(0, window.constants.MAX_PIN_ON_MAP));
-  }
+  };
 
-  function activeState() {
+  const activeState = () => {
     window.util.abledElement(window.util.fieldset);
     window.form.getRoomGuestValidation();
     window.map.fillAddress(window.constants.PIN_HANDLE);
     window.constants.form.classList.remove('ad-form--disabled');
     window.server.load(succsesLoad, window.error.onError);
-  }
+  };
 
-  function fillAddress(element) {
+  const fillAddress = (element) => {
     let addressX = element.style.left;
     let addressY = element.style.top;
     let addressInput = document.querySelector('#address');
@@ -39,14 +39,14 @@
     } else {
       addressInput.value = `${parseInt(addressX, 10) + window.constants.PIN_WIDTH / 2}, ${parseInt(addressY, 10) + window.constants.PIN_HEIGH }`;
     }
-  }
+  };
 
-  function onPopupEscPress(evt) {
+  const onPopupEscPress = (evt) => {
     if (evt.key === 'Escape') {
       evt.preventDefault();
       window.util.removeCard();
     }
-  }
+  };
 
   window.map = {
     onPopupEscPress,

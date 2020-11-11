@@ -5,7 +5,7 @@
   const cardPhotos = popup.querySelector(`.popup__photos`);
   const photoTemplate = cardPhotos.querySelector(`.popup__photo`);
 
-  function writeRoomsGuest(rooms, guest) {
+  const writeRoomsGuest = (rooms, guest) => {
     const guestRooms = popup.querySelector(`.popup__text--capacity`);
     if (rooms === 1 && guest === 1) {
       guestRooms.textContent = `${rooms} комната для ${guest} гостя`;
@@ -21,9 +21,9 @@
       guestRooms.textContent = `${rooms} комнаты для ${guest} гостя`;
     }
     return guestRooms;
-  }
+  };
 
-  function cardsPhotosFill(photos) {
+  const cardsPhotosFill = (photos) => {
     if (photos[0] === '') {
       cardPhotos.innerHTML = '';
     } else {
@@ -35,9 +35,9 @@
       });
     }
     return cardPhotos;
-  }
+  };
 
-  function renderFeauters(features) {
+  const renderFeauters = (features) => {
     const feature = popup.querySelector(`.popup__features`);
     feature.innerHTML = "";
     for (let i = 0; i < features.length; i++) {
@@ -48,9 +48,9 @@
       }
     }
     return feature;
-  }
+  };
 
-  function renderCard(ad) {
+  const renderCard = (ad) => {
     popup.querySelector(`.popup__title`).textContent = ad.offer.title;
     popup.querySelector(`.popup__text--address`).textContent = ad.offer.address;
     popup.querySelector(`.popup__text--price`).textContent = `${ad.offer.price} ₽/ночь`;
@@ -62,7 +62,7 @@
     renderFeauters(ad.offer.features);
     cardsPhotosFill(ad.offer.photos);
     window.constants.MAP.insertBefore(popup, window.constants.mapFiltersContainer);
-  }
+  };
 
   window.card = {
     popup,

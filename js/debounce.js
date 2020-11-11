@@ -1,14 +1,14 @@
 'use strict';
 (function () {
 
-  const getDebounce = function (cb) {
+  const getDebounce = (cb) => {
     let lastTimeout = null;
 
-    return function (...parameters) {
+    return (...parameters) => {
       if (lastTimeout) {
         window.clearTimeout(lastTimeout);
       }
-      lastTimeout = window.setTimeout(function () {
+      lastTimeout = window.setTimeout(() => {
         cb(...parameters);
       }, window.constants.DEBOUNCE_INTERVAL);
     };
@@ -16,4 +16,5 @@
   window.debounce = {
     getDebounce,
   };
+
 })();

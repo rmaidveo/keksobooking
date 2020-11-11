@@ -4,7 +4,7 @@
     .content
     .querySelector('div');
 
-  function setErrorMessage(StatusError) {
+  const setErrorMessage = (StatusError) => {
     const defaultErrorMessage = 'Попробуте перезагрузить страницу';
     let error;
     switch (StatusError) {
@@ -24,8 +24,9 @@
         error = `Cтатус ответа: ${StatusError} ${defaultErrorMessage}`;
     }
     return error;
-  }
-  const onError = function (errorMessage) {
+  };
+
+  const onError = (errorMessage) => {
     nodeError.querySelector('.error__message').textContent = setErrorMessage(errorMessage);
     document.querySelector('main').insertAdjacentElement('afterbegin', nodeError);
     const buttonError = document.querySelector('.error__button');
@@ -34,18 +35,18 @@
     document.addEventListener('keydown', onErrorEscPress);
   };
 
-  function resetAdress() {
+  const resetAdress = () => {
     window.map.fillAddress(window.constants.PIN_HANDLE);
-  }
+  };
 
-  function closeError() {
+  const closeError = () => {
     window.util.removeElinForm(nodeError, resetAdress);
     document.removeEventListener('keydown', onErrorEscPress);
-  }
+  };
 
-  function onErrorEscPress(evt) {
+  const onErrorEscPress = (evt) => {
     window.util.onEscPress(evt, closeError);
-  }
+  };
 
   window.error = {
     setErrorMessage,

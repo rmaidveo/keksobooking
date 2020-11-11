@@ -5,24 +5,25 @@
     .querySelector('div');
   const fieldset = document.querySelectorAll(`fieldset`);
 
-  function resetFormSuccses() {
+  const resetFormSuccses = () => {
     window.constants.MAP.classList.add('map--faded');
     window.constants.form.classList.add('ad-form--disabled');
     window.pin.deletePins();
     window.util.resetForm();
     window.util.disabledElement(fieldset);
     window.pin.resetMainPin();
-  }
+  };
 
-  function onSuccsesEscPress(evt) {
+  const onSuccsesEscPress = (evt) => {
     window.util.onEscPress(evt, closeSucsses);
-  }
+  };
 
-  function closeSucsses() {
+  const closeSucsses = () => {
     window.util.removeElinForm(nodeSuccses, resetFormSuccses);
     document.removeEventListener('keydown', onSuccsesEscPress);
-  }
-  const onSuccses = function () {
+  };
+
+  const onSuccses = () => {
     document.querySelector('main').insertAdjacentElement('afterbegin', nodeSuccses);
     nodeSuccses.addEventListener('click', closeSucsses);
     document.addEventListener('keydown', onSuccsesEscPress);
