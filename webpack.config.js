@@ -14,7 +14,8 @@ module.exports = {
     "./js/move.js",
     "./js/debounce.js",
     "./js/filter.js",
-    "./js/main.js",
+    "./js/photos.js",
+    "./js/main.js"
   ],
   output: {
     filename: "bundle.js",
