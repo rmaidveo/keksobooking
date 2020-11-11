@@ -1,12 +1,11 @@
 'use strict';
 (function () {
   const closeCard = window.card.popup.querySelector('.popup__close');
-  const fieldset = document.querySelectorAll(`fieldset`);
   const timeIn = document.querySelector('#timein');
   const timeOut = document.querySelector('#timeout');
 
   function closeCards() {
-    window.card.removeCard();
+    window.util.removeCard();
     document.removeEventListener('keydown', window.map.onPopupEscPress);
   }
 
@@ -14,20 +13,18 @@
     closeCards();
   });
 
-  window.map.fillAddress(window.constants.PIN_HANDLE);
-  window.map.disabledElement(fieldset);
+  window.util.disabledState();
 
   window.constants.PIN_HANDLE.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
-    window.map.abledElement(fieldset);
-    window.form.getRoomGuestValidation();
-    window.map.fillAddress(window.constants.PIN_HANDLE);
+    if (window.constants.MAP.classList.contains('map--faded')) {
+      window.map.activeState();
+    }
   });
 
   window.constants.PIN_HANDLE.addEventListener('keydown', function (evt) {
     if (evt.key === 'Enter') {
-      window.map.abledElement(fieldset);
-      window.map.fillAddress(window.constants.PIN_HANDLE);
+      window.map.activeState();
     }
   });
 

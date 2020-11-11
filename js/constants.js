@@ -5,6 +5,7 @@
   const PIN_WIDTH_MAIN = 65;
   const PIN_HEIGHT_MAIN = 65;
   const PIN_HEIGHT_NEEDLE = 22;
+  const MAX_PIN_ON_MAP = 5;
   const PIN_MAIN_START = {
     top: 375,
     left: 570,
@@ -37,6 +38,7 @@
     PIN_HEIGHT_NEEDLE,
     PIN_MAIN_START,
     MAP_RANGE_TOP,
+    MAX_PIN_ON_MAP,
     MAP_RANGE_BOTTOM,
     APP_COUNTS,
     mapWidth,

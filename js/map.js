@@ -13,23 +13,21 @@
     }
     window.constants.mapPins.appendChild(fragment);
   }
-  // Неактивное состояние страницы
-  function disabledElement(element) {
-    for (let i = 0; i < element.length; i++) {
-      element[i].setAttribute("disabled", true);
-    }
+
+  function succsesLoad(data) {
+    window.dataWithId = window.util.addIdToData(data);
+    appendPin(window.dataWithId.slice(0, window.constants.MAX_PIN_ON_MAP));
 
   }
-  // Активное состояние страницы
-  function abledElement(element) {
-    for (let i = 0; i < element.length; i++) {
-      element[i].removeAttribute("disabled");
-    }
+
+  function activeState() {
+    window.util.abledElement(window.util.fieldset);
+    window.form.getRoomGuestValidation();
+    window.map.fillAddress(window.constants.PIN_HANDLE);
     window.constants.form.classList.remove('ad-form--disabled');
-    window.server.load(appendPin, window.error.onError);
-
+    window.server.load(succsesLoad, window.error.onError);
   }
-  // Заполнение адреса
+
   function fillAddress(element) {
     let addressX = element.style.left;
     let addressY = element.style.top;
@@ -47,16 +45,16 @@
   function onPopupEscPress(evt) {
     if (evt.key === 'Escape') {
       evt.preventDefault();
-      window.card.removeCard();
+      window.util.removeCard();
     }
   }
 
   window.map = {
     onPopupEscPress,
     appendPin,
-    disabledElement,
-    abledElement,
+    activeState,
     fillAddress,
+    succsesLoad,
   };
 
 })();

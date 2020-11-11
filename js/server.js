@@ -21,7 +21,7 @@
           onSuccses();
         }
       } else {
-        onError('' + xhr.status);
+        onError(xhr.status);
       }
     });
 

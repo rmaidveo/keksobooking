@@ -5,24 +5,13 @@
     .querySelector('div');
   const fieldset = document.querySelectorAll(`fieldset`);
 
-  function resetMainPin() {
-    window.constants.PIN_HANDLE.style.left = `${window.constants.PIN_MAIN_START.left}px`;
-    window.constants.PIN_HANDLE.style.top = `${window.constants.PIN_MAIN_START.top}px`;
-  }
-
   function resetFormSuccses() {
     window.constants.MAP.classList.add('map--faded');
-    const pins = document.querySelectorAll('.map__pin');
-    pins.forEach((pin) => {
-      if (!pin.contains(window.constants.PIN_HANDLE)) {
-        pin.remove();
-      }
-    });
-    window.util.resetForm();
-    window.map.disabledElement(fieldset);
-    resetMainPin();
     window.constants.form.classList.add('ad-form--disabled');
-
+    window.pin.deletePins();
+    window.util.resetForm();
+    window.util.disabledElement(fieldset);
+    window.pin.resetMainPin();
   }
 
   function onSuccsesEscPress(evt) {
@@ -38,6 +27,7 @@
     nodeSuccses.addEventListener('click', closeSucsses);
     document.addEventListener('keydown', onSuccsesEscPress);
   };
+
   window.succses = {
     onSuccses,
   };
