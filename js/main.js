@@ -1,49 +1,46 @@
 'use strict';
-(function () {
-  const closeCard = window.card.popup.querySelector('.popup__close');
-  const timeIn = document.querySelector('#timein');
-  const timeOut = document.querySelector('#timeout');
+const closeCard = window.card.popup.querySelector('.popup__close');
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
 
-  function closeCards() {
-    window.util.removeCard();
-    document.removeEventListener('keydown', window.map.onPopupEscPress);
+const closeCards = () => {
+  window.util.removeCard();
+  document.removeEventListener('keydown', window.map.onPopupEscPress);
+};
+
+closeCard.addEventListener('click', () => {
+  closeCards();
+});
+
+window.util.disabledState();
+
+window.constants.PIN_HANDLE.addEventListener('mousedown', (evt) => {
+  evt.preventDefault();
+  if (window.constants.MAP.classList.contains('map--faded')) {
+    window.map.activeState();
   }
+});
 
-  closeCard.addEventListener('click', function () {
-    closeCards();
-  });
+window.constants.PIN_HANDLE.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Enter') {
+    window.map.activeState();
+  }
+});
 
-  window.util.disabledState();
+window.form.typeOption.addEventListener('change', () => {
+  window.form.minPriceValidation();
+});
 
-  window.constants.PIN_HANDLE.addEventListener('mousedown', function (evt) {
-    evt.preventDefault();
-    if (window.constants.MAP.classList.contains('map--faded')) {
-      window.map.activeState();
-    }
-  });
+window.form.userPrice.addEventListener('change', () => {
+  window.form.priceValidation();
+});
 
-  window.constants.PIN_HANDLE.addEventListener('keydown', function (evt) {
-    if (evt.key === 'Enter') {
-      window.map.activeState();
-    }
-  });
+timeIn.addEventListener('change', () => {
+  window.form.validTime(timeIn, timeOut);
+});
 
-  window.form.typeOption.addEventListener('change', function () {
-    window.form.minPriceValidation();
-  });
-
-  window.form.userPrice.addEventListener('change', function () {
-    window.form.priceValidation();
-  });
-
-  timeIn.addEventListener('change', function () {
-    window.form.validTime(timeIn, timeOut);
-  });
-
-  timeOut.addEventListener('change', function () {
-    window.form.validTime(timeOut, timeIn);
-  });
-  window.form.roomCount.addEventListener('change', window.form.getRoomGuestValidation);
-  window.form.guestCount.addEventListener('change', window.form.getRoomGuestValidation);
-
-})();
+timeOut.addEventListener('change', () => {
+  window.form.validTime(timeOut, timeIn);
+});
+window.form.roomCount.addEventListener('change', window.form.getRoomGuestValidation);
+window.form.guestCount.addEventListener('change', window.form.getRoomGuestValidation);

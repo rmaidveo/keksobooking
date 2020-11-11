@@ -1,59 +1,57 @@
 'use strict';
-(function () {
-  const URL = {
-    GET: 'https://21.javascript.pages.academy/keksobooking/data',
-    POST: 'https://21.javascript.pages.academy/keksobooking',
-  };
-  const StatusCode = {
-    OK: 200
-  };
-  const TIMEOUT_IN_MS = 10000;
+const URLS = {
+  GET: 'https://21.javascript.pages.academy/keksobooking/data',
+  POST: 'https://21.javascript.pages.academy/keksobooking',
+};
+const StatusCode = {
+  OK: 200
+};
+const TIMEOUT_IN_MS = 10000;
 
-  function xhrRequest(method, onSuccses, onError, data = null) {
-    const xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
+const xhrRequest = (method, onSuccses, onError, data = null) => {
+  const xhr = new XMLHttpRequest();
+  xhr.responseType = 'json';
 
-    xhr.addEventListener('load', function () {
-      if (xhr.status === StatusCode.OK) {
-        if (method === 'GET') {
-          onSuccses(xhr.response);
-        } else {
-          onSuccses();
-        }
+  xhr.addEventListener('load', () => {
+    if (xhr.status === StatusCode.OK) {
+      if (method === 'GET') {
+        onSuccses(xhr.response);
       } else {
-        onError(xhr.status);
+        onSuccses();
       }
-    });
-
-    xhr.addEventListener('error', function () {
-      onError('Произошла ошибка соединения');
-    });
-
-    xhr.addEventListener('timeout', function () {
-      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
-    });
-
-    xhr.timeout = TIMEOUT_IN_MS;
-
-    if (method === `GET`) {
-      xhr.open(method, URL.GET);
-    } else if (method === `POST`) {
-      xhr.open(method, URL.POST);
+    } else {
+      onError(xhr.status);
     }
+  });
 
-    xhr.send(data);
+  xhr.addEventListener('error', () => {
+    onError('Произошла ошибка соединения');
+  });
+
+  xhr.addEventListener('timeout', () => {
+    onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+  });
+
+  xhr.timeout = TIMEOUT_IN_MS;
+
+  if (method === `GET`) {
+    xhr.open(method, URLS.GET);
+  } else if (method === `POST`) {
+    xhr.open(method, URLS.POST);
   }
 
-  function load(onSuccses, onError) {
-    xhrRequest('GET', onSuccses, onError);
-  }
+  xhr.send(data);
+};
 
-  function upload(data, onSuccses, onError) {
-    xhrRequest('POST', onSuccses, onError, data);
-  }
+const load = (onSuccses, onError) => {
+  xhrRequest('GET', onSuccses, onError);
+};
 
-  window.server = {
-    load,
-    upload,
-  };
-})();
+const upload = (data, onSuccses, onError) => {
+  xhrRequest('POST', onSuccses, onError, data);
+};
+
+window.server = {
+  load,
+  upload,
+};

@@ -1,19 +1,16 @@
 'use strict';
-(function () {
+const getDebounce = (cb) => {
+  let lastTimeout = null;
 
-  const getDebounce = function (cb) {
-    let lastTimeout = null;
-
-    return function (...parameters) {
-      if (lastTimeout) {
-        window.clearTimeout(lastTimeout);
-      }
-      lastTimeout = window.setTimeout(function () {
-        cb(...parameters);
-      }, window.constants.DEBOUNCE_INTERVAL);
-    };
+  return (...parameters) => {
+    if (lastTimeout) {
+      window.clearTimeout(lastTimeout);
+    }
+    lastTimeout = window.setTimeout(() => {
+      cb(...parameters);
+    }, window.constants.DEBOUNCE_INTERVAL);
   };
-  window.debounce = {
-    getDebounce,
-  };
-})();
+};
+window.debounce = {
+  getDebounce,
+};
