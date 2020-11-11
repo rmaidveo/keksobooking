@@ -16,6 +16,15 @@
     house: 'Дом',
     bungalow: 'Бунгало',
   };
+  const PRICE_VALUE = {
+    low: 'low',
+    middle: 'middle',
+    high: 'high',
+  };
+  const MAX_PRICE = {
+    min: 10000,
+    max: 50000,
+  };
   const MAP_RANGE_TOP = 130;
   const MAP_RANGE_BOTTOM = 630;
   const APP_COUNTS = 8;
@@ -29,6 +38,7 @@
   const MIN_HOUSE_PRICE = 5000;
   const MIN_PALACE_PRICE = 10000;
   const PIN_HANDLE = document.querySelector('.map__pin--main');
+  const DEBOUNCE_INTERVAL = 500;
 
   window.constants = {
     PIN_WIDTH,
@@ -51,7 +61,10 @@
     MIN_FLAT_PRICE,
     MIN_HOUSE_PRICE,
     MIN_PALACE_PRICE,
-    PIN_HANDLE
+    PIN_HANDLE,
+    PRICE_VALUE,
+    MAX_PRICE,
+    DEBOUNCE_INTERVAL
   };
 
 })();
