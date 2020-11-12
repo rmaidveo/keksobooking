@@ -71,11 +71,15 @@ const onSubmitSend = (evt) => {
 
 };
 
+const onButtonReset = (evt) => {
+  evt.preventDefault();
+  window.util.resetForm();
+};
+
 window.constants.form.addEventListener('submit', onSubmitSend);
 
 buttonReset.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  window.util.resetForm();
+  onButtonReset(evt);
 });
 
 window.form = {

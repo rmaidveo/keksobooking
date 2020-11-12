@@ -11,6 +11,7 @@ const getDebounce = (cb) => {
     }, window.constants.DEBOUNCE_INTERVAL);
   };
 };
+
 window.debounce = {
-  getDebounce,
+  getDebounce
 };

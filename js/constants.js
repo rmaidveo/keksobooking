@@ -6,8 +6,8 @@ const PIN_HEIGHT_MAIN = 65;
 const PIN_HEIGHT_NEEDLE = 22;
 const MAX_PIN_ON_MAP = 5;
 const PIN_MAIN_START = {
-  top: 375,
-  left: 570,
+  TOP: 375,
+  LEFT: 570,
 };
 const TYPE_TRANSLATE = {
   palace: 'Дворец',
@@ -21,8 +21,8 @@ const PRICE_VALUE = {
   high: 'high',
 };
 const MAX_PRICE = {
-  min: 10000,
-  max: 50000,
+  MIN: 10000,
+  MAX: 50000,
 };
 const MAP_RANGE_TOP = 130;
 const MAP_RANGE_BOTTOM = 630;

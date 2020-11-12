@@ -1,21 +1,7 @@
 'use strict';
-const appendPin = (pins) => {
-  window.constants.MAP.classList.remove('map--faded');
-  const fragment = document.createDocumentFragment();
-  for (let pin of pins) {
-    const renderPins = window.pin.renderPin(pin);
-    fragment.appendChild(renderPins);
-    renderPins.addEventListener(`click`, () => {
-      window.card.renderCard(pin);
-      document.addEventListener('keydown', onPopupEscPress);
-    });
-  }
-  window.constants.mapPins.appendChild(fragment);
-};
-
 const succsesLoad = (data) => {
   window.dataWithId = window.util.addIdToData(data);
-  appendPin(window.dataWithId.slice(0, window.constants.MAX_PIN_ON_MAP));
+  window.pin.appendPin(window.dataWithId.slice(0, window.constants.MAX_PIN_ON_MAP));
 };
 
 const activeState = () => {
@@ -40,16 +26,7 @@ const fillAddress = (element) => {
   }
 };
 
-const onPopupEscPress = (evt) => {
-  if (evt.key === 'Escape') {
-    evt.preventDefault();
-    window.util.removeCard();
-  }
-};
-
 window.map = {
-  onPopupEscPress,
-  appendPin,
   activeState,
   fillAddress,
   succsesLoad,

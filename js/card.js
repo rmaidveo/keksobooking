@@ -65,5 +65,5 @@ const renderCard = (ad) => {
 
 window.card = {
   popup,
-  renderCard,
+  renderCard
 };

@@ -17,17 +17,17 @@ const onPriceSelectChange = (item) => {
     case defaultValue:
       return true;
     case window.constants.PRICE_VALUE.low:
-      if (item.offer.price < window.constants.MAX_PRICE.min) {
+      if (item.offer.price < window.constants.MAX_PRICE.MIN) {
         return true;
       }
       break;
     case window.constants.PRICE_VALUE.middle:
-      if (item.offer.price >= window.constants.MAX_PRICE.min && item.offer.price <= window.constants.MAX_PRICE.max) {
+      if (item.offer.price >= window.constants.MAX_PRICE.MIN && item.offer.price <= window.constants.MAX_PRICE.MAX) {
         return true;
       }
       break;
     case window.constants.PRICE_VALUE.high:
-      if (item.offer.price > window.constants.MAX_PRICE.max) {
+      if (item.offer.price > window.constants.MAX_PRICE.MAX) {
         return true;
       }
       break;
@@ -72,7 +72,7 @@ const getFillterOffers = (offer) => {
 const onFiltersFormChange = () => {
   window.util.removeCard();
   window.pin.deletePins();
-  window.debounce.getDebounce(window.map.appendPin(getFillterOffers(window.dataWithId).splice(0, window.constants.MAX_PIN_ON_MAP)));
+  window.debounce.getDebounce(window.pin.appendPin(getFillterOffers(window.dataWithId).splice(0, window.constants.MAX_PIN_ON_MAP)));
 };
 
 filtersBlock.addEventListener(`change`, onFiltersFormChange);

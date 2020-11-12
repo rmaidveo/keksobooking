@@ -3,6 +3,7 @@ const avatarChooser = document.querySelector('.ad-form__field input[type=file]')
 const avatarPreview = document.querySelector('.ad-form-header__preview > img');
 const photoChooser = document.querySelector('.ad-form__upload input[type=file]');
 const photoBox = document.querySelector('.ad-form__photo');
+const defaultSrc = 'img/muffin-grey.svg';
 
 const getPhotosPreview = (element, preview) => {
   let file = element.files[0];
@@ -40,5 +41,16 @@ const onChangePhoto = () => {
   getPhotosPreview(photoChooser, photoPreview);
 };
 
+const resetPhotosinForm = () => {
+  avatarPreview.src = defaultSrc;
+  if (photoBox.querySelector('img')) {
+    photoBox.firstChild.remove();
+  }
+};
+
 avatarChooser.addEventListener('change', onChangeAvatar);
 photoChooser.addEventListener('change', onChangePhoto);
+
+window.photos = {
+  resetPhotosinForm
+};
