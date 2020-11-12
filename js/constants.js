@@ -38,6 +38,7 @@ const MIN_HOUSE_PRICE = 5000;
 const MIN_PALACE_PRICE = 10000;
 const PIN_HANDLE = document.querySelector('.map__pin--main');
 const DEBOUNCE_INTERVAL = 500;
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 window.constants = {
   PIN_WIDTH,
@@ -63,5 +64,6 @@ window.constants = {
   PIN_HANDLE,
   PRICE_VALUE,
   MAX_PRICE,
-  DEBOUNCE_INTERVAL
+  DEBOUNCE_INTERVAL,
+  FILE_TYPES
 };
