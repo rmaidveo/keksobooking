@@ -19,13 +19,13 @@ const removeCard = () => {
   }
 };
 
-
 const disabledState = () => {
   window.map.fillAddress(window.constants.PIN_HANDLE);
   disabledElement(fieldset);
 };
 
 const resetForm = () => {
+  window.photos.resetPhotosinForm();
   window.constants.form.reset();
   window.map.fillAddress(window.constants.PIN_HANDLE);
 };

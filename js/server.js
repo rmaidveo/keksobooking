@@ -53,5 +53,5 @@ const upload = (data, onSuccses, onError) => {
 
 window.server = {
   load,
-  upload,
+  upload
 };

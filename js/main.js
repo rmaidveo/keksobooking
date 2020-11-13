@@ -3,44 +3,58 @@ const closeCard = window.card.popup.querySelector('.popup__close');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
 
-const closeCards = () => {
+const onClickCloseCards = () => {
   window.util.removeCard();
-  document.removeEventListener('keydown', window.map.onPopupEscPress);
+  document.removeEventListener('keydown', window.pin.onPopupEscPress);
 };
 
-closeCard.addEventListener('click', () => {
-  closeCards();
-});
-
-window.util.disabledState();
-
-window.constants.PIN_HANDLE.addEventListener('mousedown', (evt) => {
+const onMouseDownActive = (evt) => {
   evt.preventDefault();
   if (window.constants.MAP.classList.contains('map--faded')) {
     window.map.activeState();
   }
-});
+};
 
-window.constants.PIN_HANDLE.addEventListener('keydown', (evt) => {
+const onKeyDownActive = (evt) => {
   if (evt.key === 'Enter') {
     window.map.activeState();
   }
-});
-
-window.form.typeOption.addEventListener('change', () => {
+};
+const onCnangetypeOption = () => {
   window.form.minPriceValidation();
-});
+};
 
-window.form.userPrice.addEventListener('change', () => {
+const onCnangeUserPrice = () => {
   window.form.priceValidation();
-});
+};
 
-timeIn.addEventListener('change', () => {
+const onCnangeTimeIn = () => {
   window.form.validTime(timeIn, timeOut);
+};
+
+const onCnangeTimeOut = () => {
+  window.form.validTime(timeOut, timeIn);
+};
+
+const onChangeRoomGuest = () => {
+  window.form.getRoomGuestValidation();
+};
+
+window.util.disabledState();
+
+closeCard.addEventListener('click', onClickCloseCards);
+
+window.constants.PIN_HANDLE.addEventListener('mousedown', (evt) => {
+  onMouseDownActive(evt);
 });
 
-timeOut.addEventListener('change', () => {
-  window.form.validTime(timeOut, timeIn);
+window.constants.PIN_HANDLE.addEventListener('keydown', (evt) => {
+  onKeyDownActive(evt);
 });
-window.form.roomCount.addEventListener('change', window.form.getRoomGuestValidation);
-window.form.guestCount.addEventListener('change', window.form.getRoomGuestValidation);
+
+window.form.typeOption.addEventListener('change', onCnangetypeOption);
+window.form.userPrice.addEventListener('change', onCnangeUserPrice);
+timeIn.addEventListener('change', onCnangeTimeIn);
+timeOut.addEventListener('change', onCnangeTimeOut);
+window.form.roomCount.addEventListener('change', onChangeRoomGuest);
+window.form.guestCount.addEventListener('change', onChangeRoomGuest);

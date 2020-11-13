@@ -1,6 +1,10 @@
 'use strict';
 const teplatePin = document.querySelector('#pin').content.querySelector('button');
 
+const onPopupEscPress = (evt) => {
+  window.util.onEscPress(evt, window.util.removeCard);
+};
+
 const renderPin = (pin) => {
   let pinElement = teplatePin.cloneNode(true);
   let pinImg = pinElement.querySelector('img');
@@ -11,10 +15,23 @@ const renderPin = (pin) => {
 
   return pinElement;
 };
+const appendPin = (pins) => {
+  window.constants.MAP.classList.remove('map--faded');
+  const fragment = document.createDocumentFragment();
+  for (let pin of pins) {
+    const renderPins = window.pin.renderPin(pin);
+    fragment.appendChild(renderPins);
+    renderPins.addEventListener(`click`, () => {
+      window.card.renderCard(pin);
+      document.addEventListener('keydown', onPopupEscPress);
+    });
+  }
+  window.constants.mapPins.appendChild(fragment);
+};
 
 const resetMainPin = () => {
-  window.constants.PIN_HANDLE.style.left = `${window.constants.PIN_MAIN_START.left}px`;
-  window.constants.PIN_HANDLE.style.top = `${window.constants.PIN_MAIN_START.top}px`;
+  window.constants.PIN_HANDLE.style.left = `${window.constants.PIN_MAIN_START.LEFT}px`;
+  window.constants.PIN_HANDLE.style.top = `${window.constants.PIN_MAIN_START.TOP}px`;
 };
 
 const deletePins = () => {
@@ -27,7 +44,9 @@ const deletePins = () => {
 };
 
 window.pin = {
+  onPopupEscPress,
   renderPin,
+  appendPin,
   deletePins,
   resetMainPin,
 };

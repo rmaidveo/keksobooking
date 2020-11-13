@@ -10,11 +10,11 @@ module.exports = {
     "./js/pin.js",
     "./js/card.js",
     "./js/map.js",
+    "./js/photos.js",
     "./js/form.js",
     "./js/move.js",
     "./js/debounce.js",
     "./js/filter.js",
-    "./js/photos.js",
     "./js/main.js"
   ],
   output: {

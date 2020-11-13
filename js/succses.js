@@ -18,6 +18,7 @@ const onSuccsesEscPress = (evt) => {
 };
 
 const closeSucsses = () => {
+  window.util.resetForm();
   window.util.removeElinForm(nodeSuccses, resetFormSuccses);
   document.removeEventListener('keydown', onSuccsesEscPress);
 };
@@ -29,5 +30,5 @@ const onSuccses = () => {
 };
 
 window.succses = {
-  onSuccses,
+  onSuccses
 };
