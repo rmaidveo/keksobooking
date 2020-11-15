@@ -5,7 +5,7 @@ const succsesLoad = (data) => {
 };
 
 const activeState = () => {
-  window.util.abledElement(window.util.fieldset);
+  window.util.enabledElement(window.util.fieldset);
   window.form.getRoomGuestValidation();
   window.map.fillAddress(window.constants.PIN_HANDLE);
   window.constants.form.classList.remove('ad-form--disabled');

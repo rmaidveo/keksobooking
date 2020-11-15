@@ -66,14 +66,14 @@ const validTime = (firstEl, secondEl) => {
 
 const onSubmitSend = (evt) => {
   evt.preventDefault();
-  window.util.removeCard();
   window.server.upload(new FormData(window.constants.form), window.succses.onSuccses, window.error.onError);
 
 };
 
 const onButtonReset = (evt) => {
   evt.preventDefault();
-  window.util.resetForm();
+  window.succses.resetFormSuccsess();
+
 };
 
 window.constants.form.addEventListener('submit', onSubmitSend);

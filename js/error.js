@@ -7,16 +7,16 @@ const setErrorMessage = (StatusError) => {
   const defaultErrorMessage = 'Попробуте перезагрузить страницу';
   let error;
   switch (StatusError) {
-    case 400:
+    case window.constants.errorStatus.BAD_REQUEST:
       error = `Неверный запрос. ${defaultErrorMessage}`;
       break;
-    case 401:
+    case window.constants.errorStatus.UNAUTHORIZED:
       error = 'Пользователь не авторизован';
       break;
-    case 404:
+    case window.constants.errorStatus.NOT_FOUND:
       error = 'Ничего не найдено';
       break;
-    case 500:
+    case window.constants.errorStatus.INTERNAL_SERVER_ERROR:
       error = 'Внутренняя ошибка сервера';
       break;
     default:
@@ -25,12 +25,12 @@ const setErrorMessage = (StatusError) => {
   return error;
 };
 
-const resetAdress = () => {
+const resetAddress = () => {
   window.map.fillAddress(window.constants.PIN_HANDLE);
 };
 
 const closeError = () => {
-  window.util.removeElinForm(nodeError, resetAdress);
+  window.util.removeElinForm(nodeError, resetAddress);
   document.removeEventListener('keydown', onErrorEscPress);
 };
 

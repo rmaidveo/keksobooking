@@ -55,7 +55,7 @@ const onFeaturesSelectChange = (items) => {
   return true;
 };
 
-const getFillterOffers = (offer) => {
+const getFilterOffers = (offer) => {
   const fillterOffersArray = [];
   for (let i = 0; i < offer.length; i++) {
     if (onHouseSelectChange(offer[i]) &&
@@ -72,7 +72,7 @@ const getFillterOffers = (offer) => {
 const onFiltersFormChange = () => {
   window.util.removeCard();
   window.pin.deletePins();
-  window.debounce.getDebounce(window.pin.appendPin(getFillterOffers(window.dataWithId).splice(0, window.constants.MAX_PIN_ON_MAP)));
+  window.debounce.getDebounce(window.pin.appendPin(getFilterOffers(window.dataWithId).splice(0, window.constants.MAX_PIN_ON_MAP)));
 };
 
 filtersBlock.addEventListener(`change`, onFiltersFormChange);

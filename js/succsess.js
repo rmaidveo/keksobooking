@@ -1,12 +1,13 @@
 'use strict';
-const nodeSuccses = document.querySelector('#success')
+const nodeSuccsess = document.querySelector('#success')
   .content
   .querySelector('div');
 const fieldset = document.querySelectorAll(`fieldset`);
 
-const resetFormSuccses = () => {
+const resetFormSuccsess = () => {
   window.constants.MAP.classList.add('map--faded');
   window.constants.form.classList.add('ad-form--disabled');
+  window.util.removeCard();
   window.pin.deletePins();
   window.util.resetForm();
   window.util.disabledElement(fieldset);
@@ -19,16 +20,18 @@ const onSuccsesEscPress = (evt) => {
 
 const closeSucsses = () => {
   window.util.resetForm();
-  window.util.removeElinForm(nodeSuccses, resetFormSuccses);
+  window.util.removeElinForm(nodeSuccsess);
   document.removeEventListener('keydown', onSuccsesEscPress);
 };
 
 const onSuccses = () => {
-  document.querySelector('main').insertAdjacentElement('afterbegin', nodeSuccses);
-  nodeSuccses.addEventListener('click', closeSucsses);
+  document.querySelector('main').insertAdjacentElement('afterbegin', nodeSuccsess);
+  resetFormSuccsess();
+  nodeSuccsess.addEventListener('click', closeSucsses);
   document.addEventListener('keydown', onSuccsesEscPress);
 };
 
 window.succses = {
-  onSuccses
+  onSuccses,
+  resetFormSuccsess
 };

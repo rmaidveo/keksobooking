@@ -1,12 +1,12 @@
 'use strict';
-const teplatePin = document.querySelector('#pin').content.querySelector('button');
+const templatePin = document.querySelector('#pin').content.querySelector('button');
 
 const onPopupEscPress = (evt) => {
   window.util.onEscPress(evt, window.util.removeCard);
 };
 
 const renderPin = (pin) => {
-  let pinElement = teplatePin.cloneNode(true);
+  let pinElement = templatePin.cloneNode(true);
   let pinImg = pinElement.querySelector('img');
   pinImg.src = pin.author.avatar;
   pinImg.alt = pin.offer.title;
@@ -32,6 +32,7 @@ const appendPin = (pins) => {
 const resetMainPin = () => {
   window.constants.PIN_HANDLE.style.left = `${window.constants.PIN_MAIN_START.LEFT}px`;
   window.constants.PIN_HANDLE.style.top = `${window.constants.PIN_MAIN_START.TOP}px`;
+  window.map.fillAddress(window.constants.PIN_HANDLE);
 };
 
 const deletePins = () => {

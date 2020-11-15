@@ -24,6 +24,13 @@ const MAX_PRICE = {
   MIN: 10000,
   MAX: 50000,
 };
+const errorStatus = {
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  NOT_FOUND: 404,
+  INTERNAL_SERVER_ERROR: 500
+};
+
 const MAP_RANGE_TOP = 130;
 const MAP_RANGE_BOTTOM = 630;
 const APP_COUNTS = 8;
@@ -51,6 +58,7 @@ window.constants = {
   MAX_PIN_ON_MAP,
   MAP_RANGE_BOTTOM,
   APP_COUNTS,
+  errorStatus,
   mapWidth,
   TYPE_TRANSLATE,
   MAP,

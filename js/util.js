@@ -1,7 +1,7 @@
 'use strict';
 const fieldset = document.querySelectorAll(`fieldset`);
 
-const abledElement = (element) => {
+const enabledElement = (element) => {
   for (let i = 0; i < element.length; i++) {
     element[i].removeAttribute("disabled");
   }
@@ -25,15 +25,14 @@ const disabledState = () => {
 };
 
 const resetForm = () => {
-  window.photos.resetPhotosinForm();
+  window.photos.resetPhotosInForm();
   window.constants.form.reset();
   window.map.fillAddress(window.constants.PIN_HANDLE);
 };
 
-const removeElinForm = (el, action = 'defaultValue') => {
+const removeElinForm = (el) => {
   if (document.contains(el)) {
     el.remove();
-    action();
   }
 };
 
@@ -54,7 +53,7 @@ const addIdToData = (array) => {
 
 window.util = {
   fieldset,
-  abledElement,
+  enabledElement,
   disabledElement,
   removeCard,
   disabledState,

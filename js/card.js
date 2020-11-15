@@ -36,7 +36,7 @@ const cardsPhotosFill = (photos) => {
   return cardPhotos;
 };
 
-const renderFeauters = (features) => {
+const renderFeatures = (features) => {
   const feature = popup.querySelector(`.popup__features`);
   feature.innerHTML = "";
   for (let i = 0; i < features.length; i++) {
@@ -58,7 +58,7 @@ const renderCard = (ad) => {
   popup.querySelector(`.popup__text--time`).textContent = `Заезд после ${ad.offer.checkin}, выезд\t до ${ad.offer.checkout}`;
   popup.querySelector(`.popup__description `).textContent = ad.offer.description;
   popup.querySelector(`.popup__avatar`).src = ad.author.avatar;
-  renderFeauters(ad.offer.features);
+  renderFeatures(ad.offer.features);
   cardsPhotosFill(ad.offer.photos);
   window.constants.MAP.insertBefore(popup, window.constants.mapFiltersContainer);
 };

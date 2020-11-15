@@ -3,14 +3,14 @@ const path = require("path");
 module.exports = {
   entry: [
     "./js/constants.js",
+    "./js/photos.js",
     "./js/util.js",
     "./js/error.js",
-    "./js/succses.js",
+    "./js/succsess.js",
     "./js/server.js",
     "./js/pin.js",
     "./js/card.js",
     "./js/map.js",
-    "./js/photos.js",
     "./js/form.js",
     "./js/move.js",
     "./js/debounce.js",

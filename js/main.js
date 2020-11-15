@@ -20,7 +20,7 @@ const onKeyDownActive = (evt) => {
     window.map.activeState();
   }
 };
-const onCnangetypeOption = () => {
+const onChangeTypeOption = () => {
   window.form.minPriceValidation();
 };
 
@@ -52,7 +52,7 @@ window.constants.PIN_HANDLE.addEventListener('keydown', (evt) => {
   onKeyDownActive(evt);
 });
 
-window.form.typeOption.addEventListener('change', onCnangetypeOption);
+window.form.typeOption.addEventListener('change', onChangeTypeOption);
 window.form.userPrice.addEventListener('change', onCnangeUserPrice);
 timeIn.addEventListener('change', onCnangeTimeIn);
 timeOut.addEventListener('change', onCnangeTimeOut);

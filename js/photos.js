@@ -41,7 +41,7 @@ const onChangePhoto = () => {
   getPhotosPreview(photoChooser, photoPreview);
 };
 
-const resetPhotosinForm = () => {
+const resetPhotosInForm = () => {
   avatarPreview.src = defaultSrc;
   if (photoBox.querySelector('img')) {
     photoBox.firstChild.remove();
@@ -52,5 +52,5 @@ avatarChooser.addEventListener('change', onChangeAvatar);
 photoChooser.addEventListener('change', onChangePhoto);
 
 window.photos = {
-  resetPhotosinForm
+  resetPhotosInForm
 };
